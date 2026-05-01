@@ -1,12 +1,11 @@
 const mysql = require('mysql2');
 
-// If .env is not loading correctly, just replace the values below directly
-// with your actual MySQL password. This always works.
 const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'Vasura@736',   // <-- put your MySQL password here
-    database : 'parking_system'
+    host     : process.env.DB_HOST,
+    port     : process.env.DB_PORT,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_NAME
 });
 
 db.connect((err) => {
