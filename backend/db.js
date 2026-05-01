@@ -1,20 +1,16 @@
 const mysql = require('mysql2');
 
-// If .env is not loading correctly, just replace the values below directly
-// with your actual MySQL password. This always works.
 const db = mysql.createConnection({
-    host     : 'switchyard.proxy.rlwy.net',
-    user     : 'root',
-    password : 'ZvxsfyrSuZBqNMDsitZLnTqZgjVdArkW',   // <-- put your MySQL password here
-    database : 'parking_system'
+    host     : process.env.MYSQLHOST,
+    user     : process.env.MYSQLUSER,
+    password : process.env.MYSQLPASSWORD,
+    database : process.env.MYSQLDATABASE,
+    port     : process.env.MYSQLPORT
 });
 
 db.connect((err) => {
-    if (err) {
-        console.log('Database connection failed:', err.message);
-    } else {
-        console.log('Connected to MySQL database');
-    }
+    if (err) console.log('DB connection failed:', err.message);
+    else console.log('Connected to MySQL');
 });
 
 module.exports = db;
